@@ -1,0 +1,25 @@
+package com.lock;
+
+public class SingletonTest {
+	private SingletonTest(){}
+	
+	private static SingletonTest instance = new SingletonTest();
+	
+	private static SingletonTest getInstance(){
+		if(instance == null){
+			synchronized(SingletonTest.class){
+				if(instance == null){
+					instance = new SingletonTest();
+				}
+			}
+		}
+		return instance;
+	}
+	public static void main(String[] args){
+		SingletonTest slt1 = SingletonTest.instance;
+		SingletonTest slt2 = SingletonTest.instance;
+		if(slt1 == slt2){
+			System.out.println("this is singleton test!");
+		}
+	}
+}
